@@ -2,7 +2,6 @@ package com.enelosoft.eblog.eblogapi.security;
 
 import com.enelosoft.eblog.eblogapi.model.User;
 import com.enelosoft.eblog.eblogapi.repository.UserRepository;
-import org.hibernate.service.UnknownServiceException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

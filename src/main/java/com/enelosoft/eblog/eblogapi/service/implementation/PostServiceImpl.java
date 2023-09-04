@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -110,14 +111,13 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getPostsByCategoryId(Long categoryId) {
+
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() ->
+                new ResourceNotFoundException("Category", "Id", categoryId));
+
         List<Post> posts = postRepository.findByCategoryId(categoryId);
-        List<PostDto> postDtos = new ArrayList<>();
 
-        for (var post: posts) {
-            postDtos.add(mapToDto(post));
-        }
-
-        return postDtos;
+        return posts.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
     private PostDto mapToDto(Post post){

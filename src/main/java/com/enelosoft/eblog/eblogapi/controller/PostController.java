@@ -4,6 +4,10 @@ import com.enelosoft.eblog.eblogapi.dto.PostDto;
 import com.enelosoft.eblog.eblogapi.dto.PostResponse;
 import com.enelosoft.eblog.eblogapi.service.PostService;
 import com.enelosoft.eblog.eblogapi.utils.AppConstants;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/posts")
+@Tag(
+        name = "CRUD endpoint for Post resource"
+)
 public class PostController {
 
     private final PostService postService;
@@ -24,6 +31,17 @@ public class PostController {
 
     @PostMapping("create")
     @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(
+            name = "Bearer Authentication"
+    )
+    @Operation(
+            summary = "Create Post endpoint",
+            description = "Used to save Post to database"
+    )
+    @ApiResponse(
+            responseCode = "201",
+            description = "HTTP Status 201 Created"
+    )
     public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto){
         return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
     }
@@ -49,12 +67,18 @@ public class PostController {
 
     @PutMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(
+            name = "Bearer Authentication"
+    )
     public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto, @PathVariable Long id){
         return ResponseEntity.ok(postService.updatePost(postDto, id));
     }
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
+    @SecurityRequirement(
+            name = "Bearer Authentication"
+    )
     public ResponseEntity<String> deletePost(@PathVariable Long id){
         return ResponseEntity.ok(postService.deletePost(id));
     }

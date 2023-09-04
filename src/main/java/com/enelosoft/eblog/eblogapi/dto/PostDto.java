@@ -1,5 +1,6 @@
 package com.enelosoft.eblog.eblogapi.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -7,11 +8,17 @@ import lombok.Data;
 import java.util.Set;
 
 @Data
+@Schema(
+        description = "PostDto model"
+)
 public class PostDto {
     private Long id;
 
     @NotEmpty
     @Size(min = 2, message = "Post title should have at least two characters")
+    @Schema(
+            description = "Blog post title"
+    )
     private String title;
 
     @NotEmpty
@@ -19,6 +26,9 @@ public class PostDto {
     private String description;
 
     @NotEmpty
+    @Schema(
+            description = "Blog post content"
+    )
     private String content;
 
     private Set<CommentDto> comments;

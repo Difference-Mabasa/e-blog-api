@@ -1,7 +1,10 @@
 package com.enelosoft.eblog.eblogapi.controller;
 
 import com.enelosoft.eblog.eblogapi.dto.PostDto;
+import com.enelosoft.eblog.eblogapi.dto.PostDtoV2;
 import com.enelosoft.eblog.eblogapi.dto.PostResponse;
+import com.enelosoft.eblog.eblogapi.exception.ResourceNotFoundException;
+import com.enelosoft.eblog.eblogapi.model.Post;
 import com.enelosoft.eblog.eblogapi.service.PostService;
 import com.enelosoft.eblog.eblogapi.utils.AppConstants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,9 +18,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("api/posts")
+@RequestMapping("api/v1/posts")
 @Tag(
         name = "CRUD endpoint for Post resource"
 )

@@ -2,7 +2,10 @@ package com.enelosoft.eblog.eblogapi.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,4 +41,10 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+
+    @UpdateTimestamp
+    private LocalDateTime dateUpdated;
 }

@@ -8,11 +8,11 @@
 		<version>3.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.enelosoft.eblog</groupId>
-	<artifactId>e-blog-api</artifactId>
+	<groupId>com.nedbank.stockvel</groupId>
+	<artifactId>stockvel-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>e-blog-api</name>
-	<description>Blog application REST API</description>
+	<name>stockvel-api</name>
+	<description>Stockvel application REST API</description>
 	<properties>
 		<java.version>20</java.version>
 	</properties>
@@ -83,8 +83,6 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.2.0</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
